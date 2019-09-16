@@ -1,8 +1,3 @@
+require "active_merchant"
 require "active_merchant/argus/version"
-
-module ActiveMerchant
-  module Argus
-    class Error < StandardError; end
-    # Your code goes here...
-  end
-end
+require "active_merchant/billing/gateways/argus"
