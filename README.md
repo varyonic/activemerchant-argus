@@ -7,7 +7,7 @@ Active Merchant extension to support Inovio payment gateway (f.k.a. Argus)
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'active_merchant-argus'
+gem 'activemerchant-argus'
 ```
 
 And then execute:
@@ -26,7 +26,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/active_merchant-argus.
+Bug reports and pull requests are welcome on GitHub at https://github.com/varyonic/activemerchant-argus.
 
 ## License
 

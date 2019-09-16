@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "active_merchant/argus/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "active_merchant-argus"
+  spec.name          = "activemerchant-argus"
   spec.version       = ActiveMerchant::Argus::VERSION
   spec.authors       = ["Piers Chambers"]
   spec.email         = ["piers@varyonic.com"]
 
   spec.summary       = %q{Active Merchant extension to support Inovio payment gateway (f.k.a. Argus)}
-  spec.homepage      = "https://github.com/varyonic/active_merchant-argus"
+  spec.homepage      = "https://github.com/varyonic/activemerchant-argus"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
