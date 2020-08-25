@@ -13,6 +13,15 @@ class RemoteArgusTest < Test::Unit::TestCase
       billing_address: address,
       description: 'Store Purchase'
     }
+    @additional_options_3ds = @options.merge(
+      execute_threed: true,
+      three_d_secure: {
+        version: '1.0.2',
+        eci: '06',
+        cavv: 'AgAAAAAAAIR8CQrXcIhbQAAAAAA',
+        xid: 'MDAwMDAwMDAwMDAwMDAwMzIyNzY='
+      }
+    )
   end
 
   def test_successful_purchase
@@ -48,6 +57,14 @@ class RemoteArgusTest < Test::Unit::TestCase
     assert capture = @gateway.capture(@amount, auth.authorization)
     assert_success capture
     assert_equal 'APPROVED', capture.message
+  end
+
+  def test_successful_authorize_and_capture_with_3ds
+    assert auth = @gateway.authorize(@amount, @credit_card, @additional_options_3ds)
+    assert_success auth
+
+    assert capture = @gateway.capture(@amount, auth.authorization)
+    assert_success capture
   end
 
   def test_failed_authorize

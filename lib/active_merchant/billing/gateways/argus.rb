@@ -38,6 +38,7 @@ module ActiveMerchant #:nodoc:
         add_payment(post, payment)
         add_address(post, payment, options)
         add_customer_data(post, options)
+        add_3ds_auth(post, options)
 
         commit('CCAUTHCAP', post)
       end
@@ -48,6 +49,7 @@ module ActiveMerchant #:nodoc:
         add_payment(post, payment)
         add_address(post, payment, options)
         add_customer_data(post, options)
+        add_3ds_auth(post, options)
 
         commit('CCAUTHORIZE', post)
       end
@@ -90,6 +92,14 @@ module ActiveMerchant #:nodoc:
       end
 
       private
+
+      def add_3ds_auth(post, options)
+        if options[:three_d_secure]
+          post[:p3ds_eci] = options.dig(:three_d_secure, :eci)
+          post[:p3ds_cavv] = options.dig(:three_d_secure, :cavv)
+          post[:p3ds_xid] = options.dig(:three_d_secure, :xid)
+        end
+      end
 
       def add_customer_data(post, options)
         post[:cust_email] = options[:email] unless empty?(options[:email])
