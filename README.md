@@ -19,7 +19,7 @@ And then execute:
 
 ## Usage
 
-TODO: Write usage instructions here
+See [ActiveMerchant](https://github.com/activemerchant/active_merchant#usage).
 
 ## Development
 
