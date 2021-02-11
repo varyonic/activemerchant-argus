@@ -6,8 +6,8 @@ module ActiveMerchant #:nodoc:
     class ArgusGateway < Gateway
       include Empty
 
-      self.test_url = 'https://svc.arguspayments.com/payment/pmt_service.cfm'
-      self.live_url = 'https://svc.arguspayments.com/payment/pmt_service.cfm'
+      self.test_url = 'https://api.inoviopay.com/payment/pmt_service.cfm'
+      self.live_url = 'https://api.inoviopay.com/payment/pmt_service.cfm'
 
       self.supported_countries = ['US']
       self.default_currency = 'USD'
