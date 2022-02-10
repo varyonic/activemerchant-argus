@@ -199,8 +199,8 @@ module ActiveMerchant #:nodoc:
 
       def post_data(action, parameters = {})
         parameters[:request_action] = action
-        parameters[:request_api_version] = 3.6,
-                                           parameters[:request_response_format] = 'JSON'
+        parameters[:request_api_version] = 3.6
+        parameters[:request_response_format] = 'JSON'
         parameters.merge!(credentials).to_post_data
       end
 
