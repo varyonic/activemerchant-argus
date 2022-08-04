@@ -39,6 +39,7 @@ module ActiveMerchant #:nodoc:
         add_address(post, payment, options)
         add_customer_data(post, options)
         add_3ds_auth(post, options)
+        add_stored_credential_options(post, options)
 
         commit('CCAUTHCAP', post)
       end
@@ -50,6 +51,7 @@ module ActiveMerchant #:nodoc:
         add_address(post, payment, options)
         add_customer_data(post, options)
         add_3ds_auth(post, options)
+        add_stored_credential_options(post, options)
 
         commit('CCAUTHORIZE', post)
       end
@@ -144,6 +146,21 @@ module ActiveMerchant #:nodoc:
         post[:merch_acct_id] = @options[:merch_acct_id]
       end
 
+      def add_stored_credential_options(post, options)
+        return unless options[:stored_credential]
+
+        post[:mbshp_id_xtl] = options[:stored_credential][:network_transaction_id] if options[:stored_credential][:network_transaction_id]
+
+        post[:trans_rebill_type] = options[:stored_credential][:initial_transaction] ? 'INITIAL' : 'REBILL'
+
+        case options[:stored_credential][:reason_type]
+        when 'trial'
+          post[:trans_rebill_type] = 'TRIAL'
+        when 'unscheduled'
+          post[:trans_rebill_type] = 'NONE'
+        end
+      end
+
       def parse(body)
         JSON.parse(body)
       rescue JSON::ParserError
@@ -199,7 +216,7 @@ module ActiveMerchant #:nodoc:
 
       def post_data(action, parameters = {})
         parameters[:request_action] = action
-        parameters[:request_api_version] = 3.6
+        parameters[:request_api_version] = 4.4
         parameters[:request_response_format] = 'JSON'
         parameters.merge!(credentials).to_post_data
       end

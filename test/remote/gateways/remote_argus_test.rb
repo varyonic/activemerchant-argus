@@ -67,6 +67,33 @@ class RemoteArgusTest < Test::Unit::TestCase
     assert_success capture
   end
 
+  def test_successful_purchase_with_stored_credentials
+    network_transaction_id = generate_order_id
+
+    initial_options = @options.merge(
+      stored_credential: {
+        initial_transaction: true,
+        reason_type: 'recurring',
+        network_transaction_id: network_transaction_id
+      }
+    )
+    initial_response = @gateway.purchase(@amount, @credit_card, initial_options)
+    assert_success initial_response
+    assert_equal 'APPROVED', initial_response.message
+
+    used_options = @options.merge(
+      order_id: generate_order_id,
+      stored_credential: {
+        initial_transaction: false,
+        reason_type: 'recurring',
+        network_transaction_id: network_transaction_id
+      }
+    )
+    response = @gateway.purchase(@amount, @credit_card, used_options)
+    assert_success response
+    assert_equal 'APPROVED', response.message
+  end
+
   def test_failed_authorize
     response = @gateway.authorize(505, @declined_card, @options)
     assert_failure response
@@ -173,4 +200,10 @@ class RemoteArgusTest < Test::Unit::TestCase
     assert_scrubbed(@gateway.options[:req_password], transcript)
   end
 
+
+  private
+
+  def generate_order_id
+    (Time.now.to_f * 100).to_i.to_s
+  end
 end
