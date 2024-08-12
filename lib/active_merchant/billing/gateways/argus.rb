@@ -18,6 +18,7 @@ module ActiveMerchant #:nodoc:
       self.display_name = 'Inovio Payments'
 
       STANDARD_ERROR_CODE_MAPPING = {
+        '500' => STANDARD_ERROR_CODE[:processing_error],   # Merchant account could not be validated
         '555' => STANDARD_ERROR_CODE[:call_issuer],
         '600' => STANDARD_ERROR_CODE[:card_declined],
         '620' => STANDARD_ERROR_CODE[:invalid_cvc],
