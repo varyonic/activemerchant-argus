@@ -110,6 +110,8 @@ module ActiveMerchant #:nodoc:
         post[:cust_fname] = options[:first_name]
         post[:cust_lname] = options[:last_name]
         # TODO: first_name, last_name = split_names(address[:name])
+        post[:cust_phone] = options[:phone] unless empty?(options[:phone])
+        post[:xtl_ip] = options[:ip] unless empty?(options[:ip])
         add_shipping_address(post, options)
       end
 
@@ -218,7 +220,7 @@ module ActiveMerchant #:nodoc:
 
       def post_data(action, parameters = {})
         parameters[:request_action] = action
-        parameters[:request_api_version] = 4.4
+        parameters[:request_api_version] = 4.7
         parameters[:request_response_format] = 'JSON'
         parameters.merge!(credentials).to_post_data
       end
