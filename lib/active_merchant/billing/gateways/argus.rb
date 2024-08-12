@@ -1,6 +1,7 @@
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
-    # For more information visit {Argus Payments}[http://www.arguspayments.com/pubsite/public/?/support/document]
+    # Argus Payments is now Inovio Payments.
+    # For more information visit {Inovio}[https://developer.inoviopay.com/]
     #
     # Written by Piers Chambers (Varyonic.com)
     class ArgusGateway < Gateway
@@ -13,8 +14,8 @@ module ActiveMerchant #:nodoc:
       self.default_currency = 'USD'
       self.supported_cardtypes = [:visa, :master, :american_express, :discover, :diners, :jcb]
 
-      self.homepage_url = 'http://http://www.arguspayments.com/'
-      self.display_name = 'Argus Payments'
+      self.homepage_url = 'https://www.inoviopay.com/'
+      self.display_name = 'Inovio Payments'
 
       STANDARD_ERROR_CODE_MAPPING = {
         '555' => STANDARD_ERROR_CODE[:call_issuer],
