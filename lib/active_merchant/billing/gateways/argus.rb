@@ -102,6 +102,7 @@ module ActiveMerchant #:nodoc:
           post[:p3ds_eci] = options.dig(:three_d_secure, :eci)
           post[:p3ds_cavv] = options.dig(:three_d_secure, :cavv)
           post[:p3ds_xid] = options.dig(:three_d_secure, :xid)
+          post[:p3ds_transid] = options.dig(:three_d_secure, :ds_transaction_id)
         end
       end
 
