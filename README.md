@@ -3,7 +3,7 @@
 Active Merchant extension to support Inovio payment gateway (f.k.a. Argus)
 
 [![Version         ][rubygems_badge]][rubygems]
-[![Travis CI       ][travis_badge]][travis]
+[![Github Actions  ][actions_badge]][actions]
 
 ## Installation
 
@@ -35,7 +35,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/varyon
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
+[actions_badge]: https://github.com/varyonic/activemerchant-argus/workflows/ci/badge.svg
+[actions]: https://github.com/varyonic/activemerchant-argus/actions
 [rubygems_badge]: http://img.shields.io/gem/v/activemerchant-argus.svg
 [rubygems]: https://rubygems.org/gems/activemerchant-argus
-[travis_badge]: http://img.shields.io/travis/varyonic/activemerchant-argus/master.svg
-[travis]: https://travis-ci.org/varyonic/activemerchant-argus
