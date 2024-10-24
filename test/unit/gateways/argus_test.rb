@@ -95,13 +95,13 @@ class ArgusTest < Test::Unit::TestCase
   def pre_scrubbed
     %q(
 <- "POST /payment/pmt_service.cfm HTTP/1.1\r\nContent-Type: application/x-www-form-urlencoded\r\nAccept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3\r\nAccept: */*\r\nUser-Agent: Ruby\r\nConnection: close\r\nHost: svc.arguspayments.com\r\nContent-Length: 448\r\n\r\n"
-<- "amount=1.00&currency=USD&li_prod_id_1=55452&li_value_1=1.00&pmt_expiry=09%2F2018&pmt_key=123&pmt_numb=4000100011112224&request_currency=USD&merch_acct_id=39511&bill_addr=456+My+Street&bill_addr_city=Ottawa&bill_addr_country=CA&bill_addr_state=ON&bill_addr_zip=K1C2N6&request_action=CCAUTHCAP&request_response_format=JSON&request_api_version=%5B3.6%2C+%22JSON%22%5D&site_id=36389&req_username=api%example.com&req_password=xSUsTLQ42ANYTLMHUtop")
+<- "amount=1.00&request_currency=USD&li_prod_id_1=55452&li_value_1=1.00&pmt_expiry=09%2F2018&pmt_key=123&pmt_numb=4000100011112224&merch_acct_id=39511&bill_addr=456+My+Street&bill_addr_city=Ottawa&bill_addr_country=CA&bill_addr_state=ON&bill_addr_zip=K1C2N6&request_action=CCAUTHCAP&request_response_format=JSON&request_api_version=%5B3.6%2C+%22JSON%22%5D&site_id=36389&req_username=api%example.com&req_password=xSUsTLQ42ANYTLMHUtop")
   end
 
   def post_scrubbed
     %q(
 <- "POST /payment/pmt_service.cfm HTTP/1.1\r\nContent-Type: application/x-www-form-urlencoded\r\nAccept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3\r\nAccept: */*\r\nUser-Agent: Ruby\r\nConnection: close\r\nHost: svc.arguspayments.com\r\nContent-Length: 448\r\n\r\n"
-<- "amount=1.00&currency=USD&li_prod_id_1=55452&li_value_1=1.00&pmt_expiry=09%2F2018&pmt_key=[FILTERED]&pmt_numb=[FILTERED]&request_currency=USD&merch_acct_id=39511&bill_addr=456+My+Street&bill_addr_city=Ottawa&bill_addr_country=CA&bill_addr_state=ON&bill_addr_zip=K1C2N6&request_action=CCAUTHCAP&request_response_format=JSON&request_api_version=%5B3.6%2C+%22JSON%22%5D&site_id=36389&req_username=api%example.com&req_password=[FILTERED])
+<- "amount=1.00&request_currency=USD&li_prod_id_1=55452&li_value_1=1.00&pmt_expiry=09%2F2018&pmt_key=[FILTERED]&pmt_numb=[FILTERED]&merch_acct_id=39511&bill_addr=456+My+Street&bill_addr_city=Ottawa&bill_addr_country=CA&bill_addr_state=ON&bill_addr_zip=K1C2N6&request_action=CCAUTHCAP&request_response_format=JSON&request_api_version=%5B3.6%2C+%22JSON%22%5D&site_id=36389&req_username=api%example.com&req_password=[FILTERED])
   end
 
   def successful_purchase_response
