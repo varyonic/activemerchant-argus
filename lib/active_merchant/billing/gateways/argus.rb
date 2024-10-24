@@ -138,7 +138,7 @@ module ActiveMerchant #:nodoc:
 
       def add_invoice(post, money, options)
         post[:amount] = amount(money)
-        post[:currency] = (options[:currency] || currency(money))
+        post[:request_currency] = (options[:currency] || currency(money))
         post[:li_prod_id_1] = options[:li_prod_id_1] # 'Dynamic Amount Product ID'
         post[:li_value_1] = amount(money)
       end
@@ -147,7 +147,6 @@ module ActiveMerchant #:nodoc:
         post[:pmt_expiry] = sprintf('%02d/%04d', payment.month, payment.year)
         post[:pmt_key] = payment.verification_value
         post[:pmt_numb] = truncate(payment.number, 16)
-        post[:request_currency] = 'USD'
         post[:merch_acct_id] = @options[:merch_acct_id]
       end
 
